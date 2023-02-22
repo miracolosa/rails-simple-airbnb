@@ -1,0 +1,38 @@
+<nav class="navbar navbar-light bg-light px-3">
+  <%= link_to "Simple AirBnb", flats_path, class:"navbar-brand flex-grow-1" %>
+  <form class="d-flex">
+      <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success ms-2" type="submit">Search</button>
+  </form>
+  <%= link_to "Add flat", flats_path, class:"btn btn-outline-primary ms-2" %>
+</nav>
+
+<div class="container mt-3 p-4">
+  <h1>All Our Flats</h1>
+  <p>All <%= @flats.count %> flats</p>
+
+  <div class="cards">
+  <div class="row">
+    <% @flats.each do |flat| %>
+    <div class="card-category cold-md-4">
+      <div class="card-description d-flex flex-column align-items-start">
+              <h4 class="card-title mt-4"><%= flat.name %></h4>
+              <p class="card-text mb-2"><%= flat.address %></p>
+              <div class="card-details d-flex justify-content-start mt-2">
+                  <p class="me-4"><i class="fa-solid fa-users"></i> <%= flat.number_of_guests %></p>
+                  <p><i class="fa-solid fa-euro-sign"></i> <%= flat.price_per_night %></p>
+              </div>
+            </div>
+            <div class="card-links d-flex justify-content-start border-top pt-3">
+              <%= link_to "More info", flat_path(flat), class:"me-2 link-primary"  %>
+              <%= link_to "Edit", edit_flat_path(flat), class:"me-2 link-warning" %>
+              <%= link_to "Remove", flat_path(flat),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+              class: "link-danger" %>
+            </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+</div>

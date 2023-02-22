@@ -1,0 +1,24 @@
+<div class="cards d-flex justify-content-evenly flex-wrap">
+    <div class="row">
+      <% @flats.each do |flat| %>
+        <div class="card col-md-4 p-4">
+            <img src="https://picsum.photos/300/200" alt="Picture of the flat" class="rounded">
+            <div class="card-description d-flex flex-column align-items-start">
+              <h4 class="card-title mt-4"><%= flat.name %></h4>
+              <p class="card-text mb-2"><%= flat.address %></p>
+              <div class="card-details d-flex justify-content-start mt-2">
+                  <p class="me-4"><i class="fa-solid fa-users"></i> <%= flat.number_of_guests %></p>
+                  <p><i class="fa-solid fa-euro-sign"></i> <%= flat.price_per_night %></p>
+              </div>
+            </div>
+            <div class="card-links d-flex justify-content-start border-top pt-3">
+              <%= link_to "More info", flat_path(flat), class:"me-2 link-primary"  %>
+              <%= link_to "Edit", edit_flat_path(flat), class:"me-2 link-warning" %>
+              <%= link_to "Remove", flat_path(flat),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+              class: "link-danger" %>
+            </div>
+        </div>
+      <% end %>
+    </div-row>
+  </div>
